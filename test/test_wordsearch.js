@@ -1,7 +1,9 @@
+
+
 const chai = require('chai');
 const assert = chai.assert;
 
-const wordSearch = require('../wordsearch.js')
+const wordSearch = require('../wordsearch.js');
 
 describe("#wordSearch()", function() {
   it("should return false if the word is not present", function() {
@@ -15,7 +17,7 @@ describe("#wordSearch()", function() {
       ['U', 'B', 'T', 'W', 'A', 'P', 'A', 'I'],
       ['O', 'D', 'C', 'A', 'K', 'U', 'A', 'S'],
       ['E', 'Z', 'K', 'F', 'Q', 'U', 'A', 'L'],
-    ], 'FRANK')
+    ], 'FRANK');
 
     assert.isFalse(result);
   });
@@ -31,8 +33,49 @@ describe("#wordSearch()", function() {
       ['U', 'B', 'T', 'W', 'A', 'P', 'A', 'I'],
       ['O', 'D', 'C', 'A', 'K', 'U', 'A', 'S'],
       ['E', 'Z', 'K', 'F', 'Q', 'U', 'A', 'L'],
-    ], 'SEINFELD')
+    ], 'SEINFELD');
 
     assert.isTrue(result);
   });
+  
+  it("should return true if word is found vertically", function() {
+    const result = wordSearch([
+      ['A', 'W', 'C', 'F', 'Q', 'U', 'A', 'L'],
+      ['S', 'E', 'I', 'N', 'F', 'E', 'L', 'D'],
+      ['Y', 'F', 'C', 'F', 'Q', 'U', 'A', 'L'],
+      ['H', 'M', 'J', 'T', 'E', 'V', 'R', 'G'],
+      ['W', 'H', 'C', 'S', 'Y', 'E', 'R', 'L'],
+      ['B', 'F', 'R', 'E', 'N', 'E', 'Y', 'B'],
+      ['U', 'B', 'T', 'W', 'A', 'P', 'A', 'I'],
+      ['O', 'D', 'C', 'A', 'K', 'U', 'A', 'S'],
+      ['E', 'Z', 'K', 'F', 'Q', 'U', 'A', 'L'],
+    ], 'ASYHWBUOE');
+    assert.isTrue(result);
+  });
+
+  it("should return false if array is empty", function() {
+    const result = wordSearch([], 'SEINFELD');
+
+    assert.strictEqual(wordSearch([], 'anything'), false);
+  });
+
+  it("should return false if result is a 1 letter word value", function() {
+    const result = wordSearch([
+      ['A', 'W', 'C', 'F', 'Q', 'U', 'A', 'L'],
+      ['S', 'E', 'I', 'N', 'F', 'E', 'L', 'D'],
+      ['Y', 'F', 'C', 'F', 'Q', 'U', 'A', 'L'],
+      ['H', 'M', 'J', 'T', 'E', 'V', 'R', 'G'],
+      ['W', 'H', 'C', 'S', 'Y', 'E', 'R', 'L'],
+      ['B', 'F', 'R', 'E', 'N', 'E', 'Y', 'B'],
+      ['U', 'B', 'T', 'W', 'A', 'P', 'A', 'I'],
+      ['O', 'D', 'C', 'A', 'K', 'U', 'A', 'S'],
+      ['E', 'Z', 'K', 'F', 'Q', 'U', 'A', 'L'],
+    ], 'A');
+
+    assert.isFalse(result);
+  });
+  
 });
+
+
+// assert.strictEqual(head(['5']), '5');
